@@ -1,0 +1,30 @@
+{
+  "name": "pizza-api",
+  "version": "1.0.0",
+  "description": "A pizza API, an example app from \"Serverless applications with Claudia.js\"",
+  "main": "api.js",
+  "scripts": {
+    "create": "claudia create --region eu-central-1 --api-module api",
+    "update": "claudia update --cache-api-config apiConfig",
+    "putRolePolicy": "aws iam put-role-policy --role-name pizza-api-executor --policy-name PizzaApiDynamoDB --policy-document file://./roles/dynamodb.json",
+    "scan": "aws dynamodb scan --table-name pizza-orders --region eu-central-1 --output json",
+    "pretest": "eslint lib spec *.js",
+    "test": "node spec/support/jasmine-runner.js",
+    "debug": "node debug spec/support/jasmine-runner.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.247.1",
+    "claudia-api-builder": "^4.0.2",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "claudia": "^4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-defaults": "^9.0.0",
+    "fake-http-request": "^1.4.0",
+    "jasmine": "^3.1.0",
+    "jasmine-spec-reporter": "^4.2.1"
+  }
+}
